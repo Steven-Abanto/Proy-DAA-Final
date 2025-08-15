@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: student
+              uri: lb://student
+              predicates:
+                - Path=/api/v1/instituto/student/**
+            - id: profesor
+              uri: lb://profesor
+              predicates:
+                - Path=/api/v1/instituto/profesor/**
+            - id: matricula
+              uri: lb://matricula
+              predicates:
+                - Path=/api/v1/instituto/matricula/**
