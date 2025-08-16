@@ -1,27 +1,45 @@
 <div class="container py-5">
-  <div class="text-center mb-5">
-    <h1 class="display-4 fw-bold">Bienvenido a la Aplicación</h1>
-    <p class="lead">Selecciona una de las opciones del menú para continuar</p>
+
+  <a (click)="onLogout()" class="btn btn-danger position-fixed top-0 end-0 m-3">
+    <i class="bi bi-box-arrow-right"></i> Logout
+  </a>
+
+  <div class="text-center mb-4 fuente-1">
+    <h1 class="display-4 fw-bold">Panel principal</h1>
+    <p class="lead fw-bold">Selecciona una de las opciones del menú para continuar</p>
   </div>
 
   <div class="row g-4 justify-content-center">
     <div class="col-md-3">
-      <a routerLink="/user/" class="text-decoration-none">
+      <a routerLink="/account/" class="text-decoration-none">
         <div class="card shadow-sm h-100 text-center">
           <div class="card-body">
-            <i class="bi bi-house-door display-4 mb-3"></i>
-            <h5 class="card-title">Usuarios</h5>
+            <i class="bi bi-credit-card display-4 mb-3 text-primary"></i>
+            <h5 class="card-title fuente-1">Cuentas</h5>
           </div>
         </div>
       </a>
     </div>
 
     <div class="col-md-3">
-      <a routerLink="/student/" class="text-decoration-none">
+      <a routerLink="/transfers/" class="text-decoration-none">
         <div class="card shadow-sm h-100 text-center">
           <div class="card-body">
-            <i class="bi bi-person-badge-fill display-4 mb-3"></i>
-            <h5 class="card-title">Student</h5>
+            <i class="bi bi-cash-stack display-5 text-success"></i>
+            <i class="bi bi-arrow-left-right display-4 mx-1"></i>
+            <i class="bi bi-cash-stack display-5 text-success"></i>
+            <h5 class="card-title fuente-1">Transferencias</h5>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3">
+      <a routerLink="/loans/" class="text-decoration-none">
+        <div class="card shadow-sm h-100 text-center">
+          <div class="card-body">
+            <i class="bi bi-cash-stack display-4 mb-3 text-success"></i>
+            <h5 class="card-title fuente-1">Prestamos</h5>
           </div>
         </div>
       </a>

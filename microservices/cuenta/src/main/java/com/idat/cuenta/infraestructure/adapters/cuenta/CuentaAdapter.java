@@ -51,4 +51,9 @@ public class CuentaAdapter implements CuentaRepository {
     public void delete(String uid) {
         cuentaDataRepository.deleteById(Integer.valueOf(uid));
     }
+
+    @Override
+    public boolean existsByNroCuenta(String nroCuenta) {
+        return cuentaDataRepository.existsByNroCuenta(nroCuenta);
+    }
 }

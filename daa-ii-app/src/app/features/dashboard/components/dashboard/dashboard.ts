@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SessionService } from '../../../../core/services/session.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,5 +9,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './dashboard.scss'
 })
 export class Dashboard {
+  private sessionService = inject(SessionService);
+
+  onLogout() {
+    this.sessionService['logout']();
+  }
 
 }

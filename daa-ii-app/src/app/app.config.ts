@@ -11,7 +11,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,5 +34,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideToastr(),
     provideHttpClient(),
+    provideHttpClient(
+      withFetch(),               // 👉 usa Fetch en lugar de XHR (desaparecen los avisos)
+      withInterceptorsFromDi(),  // (opcional) si tienes interceptores registrados por DI
+    ),
   ],
 };

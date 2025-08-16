@@ -3,5 +3,8 @@
 @use 'ngx-toastr/toastr';
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
+@import url('https://fonts.googleapis.com/css2?family=Federant&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

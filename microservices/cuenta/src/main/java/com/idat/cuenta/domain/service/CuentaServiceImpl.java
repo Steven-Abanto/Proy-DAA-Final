@@ -5,6 +5,7 @@ import com.idat.cuenta.domain.model.CuentaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class CuentaServiceImpl implements CuentaService {
@@ -27,7 +28,21 @@ public class CuentaServiceImpl implements CuentaService {
 
     @Override
     public Cuenta save(Cuenta cuenta) {
-        return cuentaRepository.save(cuenta);
+        String nro = cuenta.nroCuenta();
+        if (nro == null || nro.isBlank()) {
+            nro = generarNroCuentaUnica();
+        }
+
+        // Record es inmutable: construimos uno nuevo con el nroCuenta final
+        Cuenta toSave = new Cuenta(
+                cuenta.uid(),
+                nro,
+                cuenta.tipoCuenta(),
+                cuenta.saldo(),
+                cuenta.compraInt()
+        );
+
+        return cuentaRepository.save(toSave);
     }
 
     @Override
@@ -38,5 +53,15 @@ public class CuentaServiceImpl implements CuentaService {
     @Override
     public void delete(String uid) {
         cuentaRepository.delete(uid);
+    }
+
+    private String generarNroCuentaUnica() {
+        final String prefix = "001234567890";
+        String nro;
+        do {
+            int n = ThreadLocalRandom.current().nextInt(0, 1_000_000);
+            nro = prefix + String.format("%06d", n);
+        } while (cuentaRepository.existsByNroCuenta(nro)); // requiere este método en el repo de dominio
+        return nro;
     }
 }

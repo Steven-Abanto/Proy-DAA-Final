@@ -4,7 +4,7 @@ public record Cuenta(
         String uid,
         String nroCuenta,
         String tipoCuenta,
-        int saldo,
+        double saldo,
         boolean compraInt
 ) {
 }

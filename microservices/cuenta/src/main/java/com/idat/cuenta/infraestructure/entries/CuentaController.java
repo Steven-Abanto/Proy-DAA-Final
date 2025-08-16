@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/banco/cuenta")
+@RequestMapping("/api/v1/bank/accounts")
 public class CuentaController {
 
     @Autowired
@@ -21,11 +21,11 @@ public class CuentaController {
         return cuentaService.findAll();
     }
 
-    @GetMapping("/{numeroCuenta}")
-    public ResponseEntity<Cuenta> getCuentaById(@PathVariable("numeroCuenta") String numeroCuenta) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Cuenta> getCuentaById(@PathVariable("id") String id) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(cuentaService.findById(numeroCuenta));
+                .body(cuentaService.findById(id));
     }
 
     @PostMapping
@@ -35,16 +35,16 @@ public class CuentaController {
                 .body(cuentaService.save(cuenta));
     }
 
-    @PutMapping("/{numeroCuenta}")
-    public ResponseEntity<Cuenta> updateCuenta(@PathVariable("numeroCuenta") String numeroCuenta, @RequestBody Cuenta cuenta) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Cuenta> updateCuenta(@PathVariable("id") String id, @RequestBody Cuenta cuenta) {
         return ResponseEntity
                 .status(HttpStatus.ACCEPTED)
-                .body(cuentaService.update(numeroCuenta, cuenta));
+                .body(cuentaService.update(id, cuenta));
     }
 
-    @DeleteMapping("/{numeroCuenta}")
-    public ResponseEntity<Void> deleteCuenta(@PathVariable("numeroCuenta") String numeroCuenta) {
-        cuentaService.delete(numeroCuenta);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCuenta(@PathVariable("id") String id) {
+        cuentaService.delete(id);
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
                 .build();

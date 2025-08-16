@@ -1,0 +1,45 @@
+<div class="container mt-4 fuente-1">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Cuentas</h2>
+    <button class="btn btn-primary" (click)="addAccount()">Abre tu nueva cuenta</button>
+  </div>
+
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
+      <tr class="align-middle">
+        <th>#</th>
+        <th>Nro de Cuenta</th>
+        <th>Tipo de cuenta</th>
+        <th>Saldo</th>
+        <th>Compras Por Internet</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (account of accounts(); let i = $index; track account.uid) {
+      <tr>
+        <td>{{ i + 1 }}</td>
+        <td>{{ account.nroCuenta }}</td>
+        <td>{{ account.tipoCuenta }}</td>
+        <td>{{ account.saldo | number:'1.2-2' }}</td>
+        <td>
+          <span [class.text-success]="account.compraInt" [class.text-danger]="!account.compraInt">
+            {{ account.compraInt ? 'Activado' : 'Desactivado' }}
+          </span>
+        </td>
+        <td class="text-nowrap">
+          <button class="btn btn-sm btn-info me-2" (click)="editAccount(account.uid)">Editar</button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="goBack()">Volver</button>
+  @if(loading) {
+  <div class="loading-overlay">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+  }
+</div>

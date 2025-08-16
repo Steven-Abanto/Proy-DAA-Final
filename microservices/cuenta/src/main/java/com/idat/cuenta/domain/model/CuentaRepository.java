@@ -12,4 +12,6 @@ public interface CuentaRepository {
     Cuenta update(String uid, Cuenta cuenta);
 
     void delete(String uid);
+
+    boolean existsByNroCuenta(String nroCuenta);
 }

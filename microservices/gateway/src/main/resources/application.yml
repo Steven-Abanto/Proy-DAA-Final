@@ -4,15 +4,15 @@ spring:
       server:
         webflux:
           routes:
-            - id: student
-              uri: lb://student
+            - id: accounts
+              uri: lb://accounts
               predicates:
-                - Path=/api/v1/instituto/student/**
-            - id: profesor
-              uri: lb://profesor
+                - Path=/api/v1/bank/accounts/**
+            - id: transfers
+              uri: lb://transfers
               predicates:
-                - Path=/api/v1/instituto/profesor/**
-            - id: matricula
-              uri: lb://matricula
+                - Path=/api/v1/bank/transfers/**
+            - id: loans
+              uri: lb://loans
               predicates:
-                - Path=/api/v1/instituto/matricula/**
+                - Path=/api/v1/bank/loans/**

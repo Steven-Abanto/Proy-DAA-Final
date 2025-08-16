@@ -27,7 +27,7 @@ public class CuentaData {
     private String tipoCuenta;
 
     @Column(name = "saldo", nullable = false)
-    private int saldo;
+    private double saldo;
 
     @Column(name = "compra_int", nullable = false)
     private boolean compraInt;
@@ -57,11 +57,11 @@ public class CuentaData {
         this.tipoCuenta = tipoCuenta;
     }
 
-    public int getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(int saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
