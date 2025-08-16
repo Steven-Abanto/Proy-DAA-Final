@@ -1,0 +1,64 @@
+<div class="container mt-5 d-flex justify-content-center fuente-1">
+  <div class="card w-100" style="max-width: 800px">
+    <div class="card-header">
+      <h5 class="mb-0 text-center">Abre tu nueva cuenta</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="row g-3">
+          <!-- Cuenta Origen -->
+          <div class="col-md-6">
+            <label class="form-label">Cuenta Origen</label>
+            <input type="text" inputmode="numeric" class="form-control" formControlName="cuentaOrigen">
+            @if (form.get('cuentaOrigen')?.invalid && form.get('cuentaOrigen')?.touched) {
+              <div class="text-danger small">
+                Cuenta debe ser de 18 dígitos.
+              </div>
+            }
+          </div>
+
+          <!-- Cuenta Destino -->
+          <div class="col-md-6">
+            <label class="form-label">Cuenta Destino</label>
+            <input type="text" inputmode="numeric" class="form-control" formControlName="cuentaDestin">
+            @if (form.get('cuentaDestin')?.invalid && form.get('cuentaDestin')?.touched) {
+              <div class="text-danger small">
+                Cuenta debe ser de 18 dígitos.
+              </div>
+            }
+          </div>
+
+          <!-- Monto -->
+          <div class="col-md-6">
+            <label class="form-label">Monto (S/)</label>
+            <input type="number" class="form-control" formControlName="monto">
+            @if (form.get('monto')?.invalid && form.get('monto')?.touched) {
+              <div class="text-danger small">
+                Monto mínimo: S/1.
+              </div>
+            }
+          </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-secondary" (click)="cancel()">
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="form.invalid"
+          >
+            Guardar
+          </button>
+        </div>
+      </form>
+      @if(loading) {
+      <div class="loading-overlay">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Registrando...</span>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

@@ -18,6 +18,10 @@ export const routes: Routes = [
         loadChildren: () => import('./features/accounts/account.routes').then(m => m.ACCOUNT_ROUTES)
     },
     {
+        path: 'movements',
+        loadChildren: () => import('./features/movements/movement.routes').then(m => m.MOVEMENT_ROUTES)
+    },
+    {
         path: 'student',
         loadChildren: () => import('./features/students/student.routes').then(m => m.STUDENT_ROUTES)
     }

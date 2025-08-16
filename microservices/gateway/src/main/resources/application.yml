@@ -8,10 +8,10 @@ spring:
               uri: lb://accounts
               predicates:
                 - Path=/api/v1/bank/accounts/**
-            - id: transfers
-              uri: lb://transfers
+            - id: movements
+              uri: lb://movements
               predicates:
-                - Path=/api/v1/bank/transfers/**
+                - Path=/api/v1/bank/movements/**
             - id: loans
               uri: lb://loans
               predicates:
