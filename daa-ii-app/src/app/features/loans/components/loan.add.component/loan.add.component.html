@@ -1,0 +1,94 @@
+<div class="container mt-5 d-flex justify-content-center fuente-1">
+  <div class="card w-100" style="max-width: 800px">
+    <div class="card-header">
+      <h5 class="mb-0 text-center">Solicita tu préstamo</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="row g-3">
+          <!-- Cuenta Origen -->
+          <div class="col-md-6">
+              <label class="form-label">Tipo de Préstamo</label>
+              <select class="form-select" formControlName="tipoPrestamo" id="tipoPrestamo">
+                <option value="">Seleccione</option>
+                <option value="Hipotecario">Préstamo Hipotecario</option>
+                <option value="Consumo">Préstamo de Consumo</option>
+                <option value="Vehicular">Préstamo Vehicular</option>
+                <option value="Libre Disponibilidad">Préstamo Libre Disponibilidad</option>
+                <option value="Microcrédito">Microcrédito</option>
+              </select>
+            @if (form.get('tipoPrestamo')?.invalid && form.get('tipoPrestamo')?.touched) {
+              <div class="text-danger small">
+                  El tipo de préstamo es obligatorio.
+              </div>
+            }
+          </div>
+
+          <!-- Cuenta Destino -->
+          <div class="col-md-6">
+            <label class="form-label">Cuenta Destino</label>
+            <input type="text" inputmode="numeric" class="form-control" formControlName="cuentaDestin">
+            @if (form.get('cuentaDestin')?.invalid && form.get('cuentaDestin')?.touched) {
+              <div class="text-danger small">
+                Cuenta debe ser de 18 dígitos.
+              </div>
+            }
+          </div>
+
+          <!-- Monto -->
+          <div class="col-md-6">
+            <label class="form-label">Monto (S/)</label>
+            <input type="number" class="form-control" formControlName="monto">
+            @if (form.get('monto')?.invalid && form.get('monto')?.touched) {
+              <div class="text-danger small">
+                Monto mínimo: S/1.
+              </div>
+            }
+          </div>
+
+          <!-- Tasa de Interés -->
+          <div class="col-md-6">
+            <label class="form-label">Tasa de Interés (%)</label>
+            <input type="number" class="form-control" formControlName="tasaInt">
+            @if (form.get('tasaInt')?.invalid && form.get('tasaInt')?.touched) {
+              <div class="text-danger small">
+                Tasa mínima: 3.5%. 
+              </div>
+            }
+          </div>
+
+          <!-- Nro de Cuotas -->
+          <div class="col-md-6">
+            <label class="form-label">Nro de Cuotas</label>
+            <input type="number" class="form-control" formControlName="cuotas">
+            @if (form.get('cuotas')?.invalid && form.get('cuotas')?.touched) {
+              <div class="text-danger small">
+                Cuotas mínimas: 1.
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="mt-4 d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-secondary" (click)="cancel()">
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="form.invalid"
+          >
+            Guardar
+          </button>
+        </div>
+      </form>
+      @if(loading) {
+      <div class="loading-overlay">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Registrando...</span>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

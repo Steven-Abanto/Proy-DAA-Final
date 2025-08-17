@@ -22,7 +22,7 @@ export const routes: Routes = [
         loadChildren: () => import('./features/movements/movement.routes').then(m => m.MOVEMENT_ROUTES)
     },
     {
-        path: 'student',
-        loadChildren: () => import('./features/students/student.routes').then(m => m.STUDENT_ROUTES)
+        path: 'loans',
+        loadChildren: () => import('./features/loans/loan.routes').then(m => m.LOAN_ROUTES)
     }
 ];

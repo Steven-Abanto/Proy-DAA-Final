@@ -1,0 +1,11 @@
+package com.idat.prestamos.domain.service;
+import com.idat.prestamos.domain.model.PrestamoDetalle;
+import java.util.List;
+
+public interface PrestamoDetalleService {
+    List<PrestamoDetalle> findAll();
+    PrestamoDetalle findById(int uid);
+    PrestamoDetalle save(PrestamoDetalle prestamoDetalle);
+    PrestamoDetalle update(int uid, PrestamoDetalle prestamoDetalle);
+    void delete(int uid);
+}

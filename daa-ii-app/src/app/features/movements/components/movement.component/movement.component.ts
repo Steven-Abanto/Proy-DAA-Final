@@ -36,9 +36,9 @@ export class MovementComponent {
     this.router.navigate(['movements/add']);
   }
 
-  editMovement(uid: string) {
+/*   editMovement(uid: string) {
     this.router.navigate([`movements/update/${uid}`]);     
-  }  
+  }  */ 
 
   goBack(){
     this.router.navigate(['dashboard']);

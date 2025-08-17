@@ -16,10 +16,11 @@ export const MOVEMENT_ROUTES: Routes = [
         path: 'add',
         loadComponent: () => import('./components/movement.add.component/movement.add.component').then(m => m.MovementAddComponent),
         canActivate: [AuthGuard]
-    },
+    }
+/*     ,
     {
         path: 'update/:uid',
         loadComponent: () => import('./components/movement.update.component/movement.update.component').then(m => m.MovementUpdateComponent),
         canActivate: [AuthGuard] 
-    }      
+    }    */   
 ]
