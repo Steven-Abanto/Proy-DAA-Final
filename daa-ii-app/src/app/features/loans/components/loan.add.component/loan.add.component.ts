@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoanService } from '../../services/loan.service';
 import { finalize } from 'rxjs/operators';
+import { PrestamoConDetalles } from '../../models/loan-with-details.dto';
+
+
 
 @Component({
   selector: 'app-loan.add.component',
@@ -35,48 +38,75 @@ export class LoanAddComponent {
     });
   }
 
-  async save() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      this.toastr.warning('Revisa los datos del formulario.');
-      return;
-    }
+async save() {
+  if (this.form.invalid) {
+    this.form.markAllAsTouched();
+    this.toastr.warning('Revisa los datos del formulario.');
+    return;
+  }
 
-    this.loading = true;
-    this.form.disable();
+  this.loading = true;
+  this.form.disable();
 
-    const move = this.form.value;
+  const move = this.form.value;
 
-    // Normaliza monto a número
-    const montoNumber =
-      typeof move.monto === 'string'
-        ? parseFloat(move.monto.replace(',', '.'))
-        : move.monto;
+  // Normaliza monto a número
+  const montoNumber =
+    typeof move.monto === 'string'
+      ? parseFloat(move.monto.replace(',', '.'))
+      : move.monto;
 
-    const loan = {
-      uid: move.uid,
+  const fechaActual = new Date();
+
+  // Construye el objeto completo con préstamo y detalles
+  const payload: PrestamoConDetalles = {
+    prestamo: {
       tipoPrestamo: move.tipoPrestamo,
       monto: isNaN(montoNumber) ? 0 : montoNumber,
-      fecha: new Date()
-    };
+      fecha: fechaActual
+    },
+    detalles: [{
+      uidCuenta: parseInt(move.cuentaDestin),
+      montoPrestamo: 0,
+      tasaInt: parseFloat(move.tasaInt),
+      cuotas: parseInt(move.cuotas),
+      deuda_cuota: this.calcularCuota(montoNumber, move.tasaInt, move.cuotas),
+      deuda_total: this.calcularTotal(montoNumber, move.tasaInt),
+      fecha: fechaActual
+    }]
+  };
 
-    this.loanService.createLoan(loan)
-      .pipe(finalize(() => {
-        this.form.enable();
-        this.loading = false;
-      }))
-      .subscribe({
-        next: () => {
-          this.toastr.success('Cuenta registrada correctamente');
-          this.router.navigate(['loans/list']);
-        },
-        error: (error) => {
-          console.error('Error al registrar cuenta:', error);
-          const backendMessage = error?.error?.message || 'Error al registrar cuenta';
-          this.toastr.error(backendMessage);
-        }
-      });
-  }
+
+  this.loanService.createLoanConDetalles(payload)
+    .pipe(finalize(() => {
+      this.form.enable();
+      this.loading = false;
+    }))
+    .subscribe({
+      next: () => {
+        this.toastr.success('Préstamo registrado correctamente');
+        this.router.navigate(['loans/list']);
+      },
+      error: (error) => {
+        console.error('Error al registrar préstamo:', error);
+        const backendMessage = error?.error?.message || 'Error al registrar préstamo';
+        this.toastr.error(backendMessage);
+      }
+    });
+}
+
+calcularCuota(monto: number, tasa: number, cuotas: number): number {
+  const t = tasa;
+  const c = cuotas;
+  return +(monto * (1 + t / 100) / c).toFixed(2);
+}
+
+calcularTotal(monto: number, tasa: number): number {
+  const t = tasa;
+  return +(monto * (1 + t / 100)).toFixed(2);
+}
+
+
 
   cancel() {
     this.router.navigate(['loans/list']);

@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoanInterface } from '../interfaces/loan.interface';
+import { PrestamoConDetalles } from '../models/loan-with-details.dto';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoanService {
-  private apiUrl = 'http://localhost:8080/api/v1/bank/loans';
+  private apiUrl = 'http://localhost:8082/api/v1/bank/loans';
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +29,13 @@ export class LoanService {
     };
     return this.http.post<LoanInterface>(this.apiUrl, payload);
   }
-  
+
+  createLoanConDetalles(payload: PrestamoConDetalles): Observable<any> {
+    return this.http.post(`${this.apiUrl}/con-detalles`, payload, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
   updateLoan(id: string, loan: LoanInterface): Observable<LoanInterface> {
     return this.http.put<LoanInterface>(`${this.apiUrl}/${id}`, loan, {
       headers: { 'Content-Type': 'application/json' }
