@@ -1,20 +1,27 @@
 package com.idat.prestamos.infraestructure.entries;
 
+import com.idat.prestamos.domain.model.PrestamoDetalle;
 import com.idat.prestamos.domain.model.Prestamos;
+import com.idat.prestamos.domain.service.PrestamoDetalleService;
 import com.idat.prestamos.domain.service.PrestamosService;
+import com.idat.prestamos.infraestructure.adapters.prestamos.PrestamoDetalleMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/bank/loans")
 public class PrestamosController {
 
     private final PrestamosService prestamosService;
+    private final PrestamoDetalleService prestamoDetalleService;
 
-    public PrestamosController(PrestamosService prestamosService) {
+    public PrestamosController(PrestamosService prestamosService, PrestamoDetalleService prestamoDetalleService) {
         this.prestamosService = prestamosService;
+        this.prestamoDetalleService = prestamoDetalleService;
     }
 
     // Listar todos los préstamos
@@ -35,6 +42,12 @@ public class PrestamosController {
     public ResponseEntity<Prestamos> crearPrestamo(@RequestBody Prestamos prestamo) {
         Prestamos nuevo = prestamosService.save(prestamo);
         return ResponseEntity.ok(nuevo);
+    }
+
+    @PostMapping("/con-detalles")
+    public ResponseEntity<Prestamos> crearPrestamoConDetalles(@RequestBody PrestamoConDetalles request) {
+        Prestamos creado = prestamosService.crearPrestamoConDetalle(request.getPrestamo(), request.getDetalles());
+        return ResponseEntity.ok(creado);
     }
 
     // Actualizar préstamo

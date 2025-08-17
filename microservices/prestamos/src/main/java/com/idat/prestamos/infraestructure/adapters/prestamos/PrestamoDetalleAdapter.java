@@ -2,13 +2,14 @@ package com.idat.prestamos.infraestructure.adapters.prestamos;
 
 import com.idat.prestamos.domain.model.PrestamoDetalle;
 import com.idat.prestamos.domain.model.PrestamoDetalleRepository;
+import com.idat.prestamos.domain.service.PrestamoDetalleService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
 @Component
-public class PrestamoDetalleAdapter implements PrestamoDetalleRepository {
+public class PrestamoDetalleAdapter implements PrestamoDetalleRepository, PrestamoDetalleService {
 
     private final PrestamoDetalleDataRepository prestamoDetalleDataRepository;
 

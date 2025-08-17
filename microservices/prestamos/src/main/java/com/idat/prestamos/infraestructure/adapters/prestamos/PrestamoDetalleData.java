@@ -12,16 +12,17 @@ public class PrestamoDetalleData {
 
     public PrestamoDetalleData() {}
 
-    public PrestamoDetalleData(int uid, int uid_prestamo, int uidCuenta, BigDecimal monto, BigDecimal tasaInt, int cuotas, BigDecimal deuda_cuota, BigDecimal deuda_total, LocalDate fecha) {
+    public PrestamoDetalleData(int uid, int uid_prestamo, Long uidCuenta, BigDecimal montoPrestamo, BigDecimal tasaInt, int cuotas, BigDecimal deuda_cuota, BigDecimal deuda_total, LocalDate fecha) {
         this.uid = uid;
         this.uid_prestamo = uid_prestamo;
         this.uidCuenta = uidCuenta;
-        this.monto = monto;
+        this.montoPrestamo = montoPrestamo;
         this.tasaInt = tasaInt;
         this.cuotas = cuotas;
         this.deuda_cuota = deuda_cuota;
         this.deuda_total = deuda_total;
         this.fecha = fecha;
+
     }
 
     @Id
@@ -32,10 +33,10 @@ public class PrestamoDetalleData {
     private int uid_prestamo;
 
     @Column(name = "uid_cuenta", nullable = false)
-    private int uidCuenta;
+    private Long uidCuenta;
 
-    @Column(nullable = false, precision = 15, scale = 2)
-    private BigDecimal monto;
+    @Column(name = "monto_prestamo", nullable = false)
+    private BigDecimal montoPrestamo;
 
     @Column(name = "tasaInt", nullable = false, precision = 5, scale = 2)
     private BigDecimal tasaInt;
@@ -60,20 +61,28 @@ public class PrestamoDetalleData {
         this.uid = uid;
     }
 
-    public int getUidCuenta() {
+    public int getUid_prestamo() {
+        return uid_prestamo;
+    }
+
+    public void setUid_prestamo(int uid_prestamo) {
+        this.uid_prestamo = uid_prestamo;
+    }
+
+    public Long getUidCuenta() {
         return uidCuenta;
     }
 
-    public void setUidCuenta(int uidCuenta) {
+    public void setUidCuenta(Long uidCuenta) {
         this.uidCuenta = uidCuenta;
     }
 
-    public BigDecimal getMonto() {
-        return monto;
+    public BigDecimal getMontoPrestamo() {
+        return montoPrestamo;
     }
 
-    public void setMonto(BigDecimal monto) {
-        this.monto = monto;
+    public void setMontoPrestamo(BigDecimal montoPrestamo) {
+        this.montoPrestamo = montoPrestamo;
     }
 
     public BigDecimal getTasaInt() {
@@ -114,13 +123,5 @@ public class PrestamoDetalleData {
 
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
-    }
-
-    public int getUid_prestamo() {
-        return uid_prestamo;
-    }
-
-    public void setUid_prestamo(int uid_prestamo) {
-        this.uid_prestamo = uid_prestamo;
     }
 }

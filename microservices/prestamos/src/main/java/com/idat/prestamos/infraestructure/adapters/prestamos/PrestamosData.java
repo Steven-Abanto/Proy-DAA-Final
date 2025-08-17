@@ -11,9 +11,10 @@ public class PrestamosData {
 
     public PrestamosData() {}
 
-    public PrestamosData(int uid, String tipoPrestamo,LocalDate fecha) {
+    public PrestamosData(int uid, String tipoPrestamo, BigDecimal monto,LocalDate fecha) {
         this.uid = uid;
         this.tipoPrestamo = tipoPrestamo;
+        this.monto = monto;
         this.fecha = fecha;
     }
 
@@ -27,7 +28,7 @@ public class PrestamosData {
     @Column(name = "monto", nullable = false)
     private BigDecimal monto;
 
-    @Column(nullable = false)
+    @Column(name= "fecha", nullable = false)
     private LocalDate fecha;
 
 

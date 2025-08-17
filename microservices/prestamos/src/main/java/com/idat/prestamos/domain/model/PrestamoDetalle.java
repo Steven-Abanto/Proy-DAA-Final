@@ -5,9 +5,9 @@ import java.time.LocalDate;
 
 public record PrestamoDetalle(
         int uid,
-        int uidPrestamo,
-        int uidCuenta,
-        BigDecimal monto,
+        int uid_prestamo,
+        Long uidCuenta,
+        BigDecimal montoPrestamo,
         BigDecimal tasaInt,
         int cuotas,
         BigDecimal deuda_cuota,

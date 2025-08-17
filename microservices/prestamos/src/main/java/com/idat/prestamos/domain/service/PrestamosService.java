@@ -10,7 +10,6 @@ public interface PrestamosService {
     Prestamos save(Prestamos prestamos);
     Prestamos update(int uid, Prestamos prestamos);
     void delete(int uid);
-
-
     Prestamos crearPrestamoConDetalle(Prestamos prestamo, List<PrestamoDetalle> detalles);
+
 }
