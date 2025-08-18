@@ -5,6 +5,7 @@ import com.idat.prestamos.domain.model.Prestamos;
 import com.idat.prestamos.domain.service.PrestamoDetalleService;
 import com.idat.prestamos.domain.service.PrestamosService;
 import com.idat.prestamos.infraestructure.adapters.prestamos.PrestamoDetalleMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,16 @@ public class PrestamosController {
         Prestamos prestamo = prestamosService.findById(id);
         return ResponseEntity.ok(prestamo);
     }
+
+
+    //Buscar detalle de prestamo por id
+    @GetMapping("/detalles/{uid}")
+    public ResponseEntity<PrestamoDetalle> detallePrestamoPorId(@PathVariable("uid") int uid){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(prestamoDetalleService.findById(uid));
+    }
+
 
     // Crear préstamo con detalle
     @PostMapping

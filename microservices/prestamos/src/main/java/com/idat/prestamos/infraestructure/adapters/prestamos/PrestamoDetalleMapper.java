@@ -8,6 +8,9 @@ import org.mapstruct.factory.Mappers;
 public interface PrestamoDetalleMapper {
     PrestamoDetalleMapper MAPPER = Mappers.getMapper(PrestamoDetalleMapper.class);
 
-    PrestamoDetalleData toEntity(PrestamoDetalle domain);
-    PrestamoDetalle toDomain(PrestamoDetalleData entity);
+    PrestamoDetalle toDomain (PrestamoDetalleData entity);
+
+    PrestamoDetalleData toEntity (PrestamoDetalle domain);
+
+
 }

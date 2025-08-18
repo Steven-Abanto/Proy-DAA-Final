@@ -38,7 +38,7 @@ public class PrestamoDetalleData {
     @Column(name = "monto_prestamo", nullable = false)
     private BigDecimal montoPrestamo;
 
-    @Column(name = "tasaInt", nullable = false, precision = 5, scale = 2)
+    @Column(name = "tasa_int", nullable = false, precision = 5, scale = 2)
     private BigDecimal tasaInt;
 
     @Column(nullable = false)
@@ -53,6 +53,7 @@ public class PrestamoDetalleData {
     @Column(nullable = false)
     private LocalDate fecha;
 
+    //Getters y Setters
     public int getUid() {
         return uid;
     }
