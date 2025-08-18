@@ -1,0 +1,17 @@
+drop database if exists cuentas;
+create database if not exists cuentas;
+use cuentas;
+
+create table cuenta(
+uid int primary key auto_increment,
+nro_cuenta varchar(18) unique not null,
+tipo_cuenta varchar(20) not null,
+saldo decimal(15,2) not null,
+compra_int boolean);
+
+INSERT INTO cuenta (nro_cuenta, tipo_cuenta, saldo, compra_int) VALUES
+('001234567890123456', 'Cuenta de Ahorros', 3500, TRUE),
+('001234567890654321', 'Cuenta Corriente', 12000, FALSE),
+('001234567890111111', 'Cuenta a Plazo Fijo', 500, TRUE),
+('001234567890222222', 'Cuenta Sueldo', 8000, TRUE),
+('001234567890333333', 'Cuenta CTS', 15000, FALSE);

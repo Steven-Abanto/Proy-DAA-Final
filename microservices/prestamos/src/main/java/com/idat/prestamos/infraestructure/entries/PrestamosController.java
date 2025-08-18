@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/bank/loans")
 public class PrestamosController {
@@ -33,15 +32,15 @@ public class PrestamosController {
 
     // Buscar un préstamo por id
     @GetMapping("/{id}")
-    public ResponseEntity<Prestamos> buscarPorId(@PathVariable int id) {
+    public ResponseEntity<Prestamos> buscarPorId(@PathVariable String id) {
         Prestamos prestamo = prestamosService.findById(id);
         return ResponseEntity.ok(prestamo);
     }
 
 
     //Buscar detalle de prestamo por id
-    @GetMapping("/detalles/{uid}")
-    public ResponseEntity<PrestamoDetalle> detallePrestamoPorId(@PathVariable("uid") int uid){
+    @GetMapping("/details/{uid}")
+    public ResponseEntity<PrestamoDetalle> detallePrestamoPorId(@PathVariable("uid") String uid){
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(prestamoDetalleService.findById(uid));
@@ -55,7 +54,7 @@ public class PrestamosController {
         return ResponseEntity.ok(nuevo);
     }
 
-    @PostMapping("/con-detalles")
+    @PostMapping("/saveDetails")
     public ResponseEntity<Prestamos> crearPrestamoConDetalles(@RequestBody PrestamoConDetalles request) {
         Prestamos creado = prestamosService.crearPrestamoConDetalle(request.getPrestamo(), request.getDetalles());
         return ResponseEntity.ok(creado);
@@ -63,14 +62,14 @@ public class PrestamosController {
 
     // Actualizar préstamo
     @PutMapping("/{id}")
-    public ResponseEntity<Prestamos> actualizarPrestamo(@PathVariable int id, @RequestBody Prestamos prestamo) {
+    public ResponseEntity<Prestamos> actualizarPrestamo(@PathVariable String id, @RequestBody Prestamos prestamo) {
         Prestamos actualizado = prestamosService.update(id, prestamo);
         return ResponseEntity.ok(actualizado);
     }
 
     // Eliminar préstamo
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarPrestamo(@PathVariable int id) {
+    public ResponseEntity<Void> eliminarPrestamo(@PathVariable String id) {
         prestamosService.delete(id);
         return ResponseEntity.noContent().build();
     }

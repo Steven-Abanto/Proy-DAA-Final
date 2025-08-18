@@ -31,8 +31,8 @@ export class LoanAddComponent {
   ) {
     this.form = this.fb.group({
       tipoPrestamo:  ['', [Validators.required]],
-      cuentaDestin: ['', [Validators.required, Validators.pattern(/^\d{18}$/)]],
-      monto:         ['', [Validators.required, Validators.min(1)]],
+      uidCuenta:  ['', [Validators.required, Validators.pattern(/^\d{18}$/)]],
+      montoPrestamo: ['', [Validators.required, Validators.min(1)]],
       tasaInt:       ['', [Validators.required, Validators.min(3.5)]],
       cuotas:        ['', [Validators.required, Validators.min(1)]]
     });
@@ -52,9 +52,9 @@ async save() {
 
   // Normaliza monto a número
   const montoNumber =
-    typeof move.monto === 'string'
-      ? parseFloat(move.monto.replace(',', '.'))
-      : move.monto;
+    typeof move.montoPrestamo === 'string'
+      ? parseFloat(move.montoPrestamo.replace(',', '.'))
+      : move.montoPrestamo;
 
   const fechaActual = new Date();
 
@@ -66,8 +66,8 @@ async save() {
       fecha: fechaActual
     },
     detalles: [{
-      uidCuenta: parseInt(move.cuentaDestin),
-      montoPrestamo: 0,
+      uidCuenta: move.uidCuenta,
+      montoPrestamo: montoNumber,
       tasaInt: parseFloat(move.tasaInt),
       cuotas: parseInt(move.cuotas),
       deuda_cuota: this.calcularCuota(montoNumber, move.tasaInt, move.cuotas),

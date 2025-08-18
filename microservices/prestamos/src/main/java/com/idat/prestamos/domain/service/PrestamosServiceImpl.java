@@ -27,7 +27,7 @@ public class PrestamosServiceImpl implements PrestamosService {
     }
 
     @Override
-    public Prestamos findById(int uid) {
+    public Prestamos findById(String uid) {
         return prestamosRepository.findById(uid);
     }
 
@@ -46,7 +46,8 @@ public class PrestamosServiceImpl implements PrestamosService {
         // 2. Asignar el uid del préstamo y el monto principal a cada detalle
         for (PrestamoDetalle detalle : detalles) {
             PrestamoDetalle detalleConUid = new PrestamoDetalle(
-                    0, // uid del detalle
+//                    "0", // uid del detalle
+                    null, // Se generará automáticamente
                     prestamoGuardado.uid(),            // uid del préstamo
                     detalle.uidCuenta(),
                     prestamoGuardado.monto(),          // ← monto del préstamo principal
@@ -67,12 +68,12 @@ public class PrestamosServiceImpl implements PrestamosService {
 
 
     @Override
-    public Prestamos update(int uid, Prestamos prestamos) {
+    public Prestamos update(String uid, Prestamos prestamos) {
         return prestamosRepository.update(uid, prestamos);
     }
 
     @Override
-    public void delete(int uid) {
+    public void delete(String uid) {
         prestamosRepository.delete(uid);
     }
 

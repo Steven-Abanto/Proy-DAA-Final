@@ -54,6 +54,6 @@ export class LoanDetailsComponent {
   }  
 
   goBack(){
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['loans/list']);
   }
 }

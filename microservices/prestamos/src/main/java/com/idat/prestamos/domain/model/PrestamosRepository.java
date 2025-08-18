@@ -5,11 +5,11 @@ import java.util.List;
 public interface PrestamosRepository {
     List<Prestamos> findAll();
 
-    Prestamos findById(int uid);
+    Prestamos findById(String uid);
 
     Prestamos save(Prestamos prestamos);
 
-    Prestamos update(int uid, Prestamos prestamos);
+    Prestamos update(String uid, Prestamos prestamos);
 
-    void delete(int uid);
+    void delete(String uid);
 }

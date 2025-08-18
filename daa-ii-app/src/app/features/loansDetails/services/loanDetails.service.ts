@@ -7,7 +7,7 @@ import { LoanDetailsInterface } from '../interfaces/loanDetails.interface';
   providedIn: 'root'
 })
 export class LoanDetailsService {
-  private apiUrl = 'http://localhost:8082/api/v1/bank/loans/detalles';
+  private apiUrl = 'http://localhost:8080/api/v1/bank/loans/details';
 
   constructor(private http: HttpClient) {}
 

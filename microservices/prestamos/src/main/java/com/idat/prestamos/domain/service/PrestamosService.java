@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface PrestamosService {
     List<Prestamos> findAll();
-    Prestamos findById(int uid);
+    Prestamos findById(String uid);
     Prestamos save(Prestamos prestamos);
-    Prestamos update(int uid, Prestamos prestamos);
-    void delete(int uid);
+    Prestamos update(String uid, Prestamos prestamos);
+    void delete(String uid);
     Prestamos crearPrestamoConDetalle(Prestamos prestamo, List<PrestamoDetalle> detalles);
 
 }

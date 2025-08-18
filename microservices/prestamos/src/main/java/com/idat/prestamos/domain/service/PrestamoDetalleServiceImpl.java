@@ -20,14 +20,14 @@ public class PrestamoDetalleServiceImpl implements PrestamoDetalleService{
     public List<PrestamoDetalle> findAll() { return prestamoDetalleRepository.findAll();}
 
     @Override
-    public PrestamoDetalle findById(int uid) { return prestamoDetalleRepository.findById(uid);}
+    public PrestamoDetalle findById(String uid) { return prestamoDetalleRepository.findById(uid);}
 
     @Override
     public PrestamoDetalle save(PrestamoDetalle prestamoDetalle) { return prestamoDetalleRepository.save(prestamoDetalle);}
 
     @Override
-    public PrestamoDetalle update(int uid, PrestamoDetalle prestamoDetalle) { return prestamoDetalleRepository.update(uid, prestamoDetalle);}
+    public PrestamoDetalle update(String uid, PrestamoDetalle prestamoDetalle) { return prestamoDetalleRepository.update(uid, prestamoDetalle);}
 
     @Override
-    public void delete(int uid) {prestamoDetalleRepository.delete(uid);}
+    public void delete(String uid) {prestamoDetalleRepository.delete(uid);}
 }

@@ -11,7 +11,7 @@ public class PrestamosData {
 
     public PrestamosData() {}
 
-    public PrestamosData(int uid, String tipoPrestamo, BigDecimal monto,LocalDate fecha) {
+    public PrestamosData(Integer uid, String tipoPrestamo, BigDecimal monto,LocalDate fecha) {
         this.uid = uid;
         this.tipoPrestamo = tipoPrestamo;
         this.monto = monto;
@@ -20,7 +20,7 @@ public class PrestamosData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int uid;
+    private Integer uid;
 
     @Column(name = "tipo_prestamo", length = 20, nullable = false)
     private String tipoPrestamo;
@@ -33,11 +33,11 @@ public class PrestamosData {
 
 
     // Getters y Setters
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 

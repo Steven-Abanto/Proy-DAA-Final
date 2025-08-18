@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface PrestamoDetalleService {
     List<PrestamoDetalle> findAll();
-    PrestamoDetalle findById(int uid);
+    PrestamoDetalle findById(String uid);
     PrestamoDetalle save(PrestamoDetalle prestamoDetalle);
-    PrestamoDetalle update(int uid, PrestamoDetalle prestamoDetalle);
-    void delete(int uid);
+    PrestamoDetalle update(String uid, PrestamoDetalle prestamoDetalle);
+    void delete(String uid);
 }

@@ -1,0 +1,39 @@
+drop database if exists prestamos;
+create database if not exists prestamos;
+use prestamos;
+
+create table prestamo(
+uid int primary key auto_increment,
+tipo_prestamo varchar(20) not null,
+monto decimal(15,2) not null,
+fecha date not null
+);
+
+create table prestamo_detalle(
+uid int primary key auto_increment,
+uid_prestamo int not null,
+uid_cuenta varchar(18) not null,
+monto_prestamo decimal(15,2) not null,
+tasa_int decimal(5,2) not null,
+cuotas int not null,
+deuda_cuota decimal(15,2) not null,
+deuda_total decimal(15,2) not null,
+fecha date not null);
+
+
+INSERT INTO prestamo (uid, tipo_prestamo, monto, fecha) VALUES
+(1, 'Hipotecario', 50000.00, '2025-01-15'),
+(2, 'Consumo',     8000.00,  '2025-02-01'),
+(3, 'Vehicular',   25000.00, '2025-02-20'),
+(4, 'Educativo',   12000.00, '2025-03-05'),
+(5, 'Microcrédito',3000.00,  '2025-03-18');
+
+
+INSERT INTO prestamo_detalle
+(uid_prestamo, uid_cuenta, monto_prestamo, tasa_int, cuotas, deuda_cuota, deuda_total, fecha)
+VALUES
+(1, '001234567890123456', 50000.00,  8.50, 120, 625.00, 75000.00, '2025-01-15'), -- Hipotecario
+(2, '001234567890654321',  8000.00, 15.00,  24, 383.33,  9200.00, '2025-02-01'), -- Consumo
+(3, '001234567890111111', 25000.00, 10.00,  60, 555.00, 33300.00, '2025-02-20'), -- Vehicular
+(4, '001234567890222222', 12000.00, 12.00,  36, 444.44, 16000.00, '2025-03-05'), -- Educativo
+(5, '001234567890333333',  3000.00, 18.00,  12, 295.00,  3540.00, '2025-03-18'); -- Microcrédito

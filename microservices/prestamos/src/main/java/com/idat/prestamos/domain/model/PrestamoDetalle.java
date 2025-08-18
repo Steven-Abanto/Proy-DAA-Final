@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record PrestamoDetalle(
-        int uid,
-        int uid_prestamo,
-        Long uidCuenta,
+        String uid,
+        Integer  uid_prestamo,
+        String uidCuenta,
         BigDecimal montoPrestamo,
         BigDecimal tasaInt,
         int cuotas,

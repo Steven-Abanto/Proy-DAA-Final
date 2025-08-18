@@ -5,11 +5,11 @@ public interface PrestamoDetalleRepository {
 
     List<PrestamoDetalle> findAll();
 
-    PrestamoDetalle findById(int uid);
+    PrestamoDetalle findById(String uid);
 
     PrestamoDetalle save(PrestamoDetalle detalle);
 
-    PrestamoDetalle update(int uid, PrestamoDetalle detalle);
+    PrestamoDetalle update(String uid, PrestamoDetalle detalle);
 
-    void delete(int uid);
+    void delete(String uid);
 }

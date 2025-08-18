@@ -25,30 +25,33 @@ public class PrestamosAdapter implements PrestamosRepository {
     }
 
     @Override
-    public Prestamos findById(int uid) {
-        Optional<PrestamosData> prestamosData = prestamosDataRepository.findById(uid);
+    public Prestamos findById(String uid) {
+        Optional<PrestamosData> prestamosData = prestamosDataRepository.findById(Integer.valueOf(uid));
         return prestamosData.map(PrestamosMapper.MAPPER::toDomain).orElse(null);
     }
 
     @Override
     public Prestamos save(Prestamos prestamos) {
-        PrestamosData prestamosData = prestamosDataRepository.save(PrestamosMapper.MAPPER.toEntity(prestamos));
-        return PrestamosMapper.MAPPER.toDomain(prestamosData);
+        PrestamosData entity = PrestamosMapper.MAPPER.toNewEntity(prestamos);
+        entity.setUid(null); // cinturón y tirantes, garantiza INSERT
+
+        PrestamosData saved = prestamosDataRepository.save(entity);
+        return PrestamosMapper.MAPPER.toDomain(saved);
     }
 
     @Override
-    public Prestamos update(int uid, Prestamos prestamos) {
-        Optional<PrestamosData> prestamosData = prestamosDataRepository.findById(uid);
+    public Prestamos update(String uid, Prestamos prestamos) {
+        Optional<PrestamosData> prestamosData = prestamosDataRepository.findById(Integer.valueOf(uid));
         if (prestamosData.isPresent()) {
             PrestamosData entity = PrestamosMapper.MAPPER.toEntity(prestamos);
-            entity.setUid(uid);
+            entity.setUid(Integer.valueOf(uid));
             return PrestamosMapper.MAPPER.toDomain(prestamosDataRepository.save(entity));
         }
         return null;
     }
 
     @Override
-    public void delete(int uid) {
-        prestamosDataRepository.deleteById(uid);
+    public void delete(String uid) {
+        prestamosDataRepository.deleteById(Integer.valueOf(uid));
     }
 }

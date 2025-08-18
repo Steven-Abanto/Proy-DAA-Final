@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record Prestamos(
-        int uid,
+        Integer uid,
         String tipoPrestamo,
         BigDecimal monto,
         LocalDate fecha

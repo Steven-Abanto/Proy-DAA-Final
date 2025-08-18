@@ -9,7 +9,7 @@ import { PrestamoConDetalles } from '../models/loan-with-details.dto';
   providedIn: 'root'
 })
 export class LoanService {
-  private apiUrl = 'http://localhost:8082/api/v1/bank/loans';
+  private apiUrl = 'http://localhost:8080/api/v1/bank/loans';
 
   constructor(private http: HttpClient) {}
 
@@ -31,7 +31,7 @@ export class LoanService {
   }
 
   createLoanConDetalles(payload: PrestamoConDetalles): Observable<any> {
-    return this.http.post(`${this.apiUrl}/con-detalles`, payload, {
+    return this.http.post(`${this.apiUrl}/saveDetails`, payload, {
       headers: { 'Content-Type': 'application/json' }
     });
   }

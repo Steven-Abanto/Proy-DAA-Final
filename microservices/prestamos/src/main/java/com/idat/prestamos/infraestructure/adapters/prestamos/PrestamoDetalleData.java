@@ -12,7 +12,7 @@ public class PrestamoDetalleData {
 
     public PrestamoDetalleData() {}
 
-    public PrestamoDetalleData(int uid, int uid_prestamo, Long uidCuenta, BigDecimal montoPrestamo, BigDecimal tasaInt, int cuotas, BigDecimal deuda_cuota, BigDecimal deuda_total, LocalDate fecha) {
+    public PrestamoDetalleData(Integer uid, Integer uid_prestamo, String uidCuenta, BigDecimal montoPrestamo, BigDecimal tasaInt, int cuotas, BigDecimal deuda_cuota, BigDecimal deuda_total, LocalDate fecha) {
         this.uid = uid;
         this.uid_prestamo = uid_prestamo;
         this.uidCuenta = uidCuenta;
@@ -27,13 +27,13 @@ public class PrestamoDetalleData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int uid;
+    private Integer uid;
 
     @Column(name = "uid_prestamo", nullable = false)
-    private int uid_prestamo;
+    private Integer uid_prestamo;
 
     @Column(name = "uid_cuenta", nullable = false)
-    private Long uidCuenta;
+    private String uidCuenta;
 
     @Column(name = "monto_prestamo", nullable = false)
     private BigDecimal montoPrestamo;
@@ -54,27 +54,27 @@ public class PrestamoDetalleData {
     private LocalDate fecha;
 
     //Getters y Setters
-    public int getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
 
-    public int getUid_prestamo() {
+    public Integer getUid_prestamo() {
         return uid_prestamo;
     }
 
-    public void setUid_prestamo(int uid_prestamo) {
+    public void setUid_prestamo(Integer uid_prestamo) {
         this.uid_prestamo = uid_prestamo;
     }
 
-    public Long getUidCuenta() {
+    public String getUidCuenta() {
         return uidCuenta;
     }
 
-    public void setUidCuenta(Long uidCuenta) {
+    public void setUidCuenta(String uidCuenta) {
         this.uidCuenta = uidCuenta;
     }
 

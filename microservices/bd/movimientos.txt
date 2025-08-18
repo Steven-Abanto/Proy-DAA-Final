@@ -1,0 +1,17 @@
+drop database if exists movimientos;
+create database if not exists movimientos;
+use movimientos;
+
+create table movimiento(
+uid int primary key auto_increment,
+cuenta_origen varchar(18) not null,
+cuenta_destin varchar(18) not null,
+monto decimal(15,2) not null,
+fecha date);
+
+INSERT INTO movimiento (cuenta_origen, cuenta_destin, monto, fecha) VALUES
+('001234567890123456', '001234567890654321', 500.00, '2025-01-10'),
+('001234567890654321', '001234567890123456', 1200.00, '2025-02-15'),
+('001234567890111111', '001234567890222222', 300.00, '2025-03-05'),
+('001234567890333333', '001234567890654321', 2000.00, '2025-04-20'),
+('001234567890222222', '001234567890111111', 150.00, '2025-05-25');
