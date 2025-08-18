@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
 import { AuthGuard } from "../../core/guards/auth.guard";
+import { LOANDETAILS_ROUTES } from "../loansDetails/loanDetails.routes";
+
 
 export const LOAN_ROUTES: Routes = [
     {
@@ -16,7 +18,13 @@ export const LOAN_ROUTES: Routes = [
         path: 'add',
         loadComponent: () => import('./components/loan.add.component/loan.add.component').then(m => m.LoanAddComponent),
         canActivate: [AuthGuard]
+    },
+
+    {
+        path: 'details',
+        children: LOANDETAILS_ROUTES
     }
+
 /*     ,
     {
         path: 'update/:uid',

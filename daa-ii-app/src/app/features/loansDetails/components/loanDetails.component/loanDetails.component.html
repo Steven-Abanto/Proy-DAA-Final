@@ -18,17 +18,17 @@
       </tr>
     </thead>
     <tbody>
-      @for (loandetails of loandetailss(); let i = $index; track loandetails.uidPrestamo) {
-      <tr>
-        <td>{{ i + 1 }}</td>
-        <td>{{ loandetails.uidPrestamo }}</td>
-        <td>{{ loandetails.uidCuenta }}</td>
-        <td>{{ loandetails.montoPrestamo }}</td>
-        <td>{{ loandetails.tasaInt }}</td>
-        <td>{{ loandetails.cuotas }}</td>
-        <td>{{ loandetails.deudaCuota }}</td>
-        <td>{{ loandetails.deudaTotal }}</td>
-      </tr>
+      @if (loandetailss()) {
+        <tr>
+          <td>1</td>
+          <td>{{ loandetailss()?.uid_prestamo }}</td>
+          <td>{{ loandetailss()?.uidCuenta }}</td>
+          <td>{{ loandetailss()?.montoPrestamo | number:'1.2-2' }}</td>
+          <td>{{ loandetailss()?.cuotas }}</td>
+          <td>{{ loandetailss()?.tasaInt }}%</td>
+          <td>{{ loandetailss()?.deuda_cuota | number:'1.2-2' }}</td>
+          <td>{{ loandetailss()?.deuda_total | number:'1.2-2' }}</td>
+        </tr>
       }
     </tbody>
   </table>

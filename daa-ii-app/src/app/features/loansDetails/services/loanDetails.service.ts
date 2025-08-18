@@ -7,7 +7,7 @@ import { LoanDetailsInterface } from '../interfaces/loanDetails.interface';
   providedIn: 'root'
 })
 export class LoanDetailsService {
-  private apiUrl = 'http://localhost:8080/api/v1/bank/loandetailss';
+  private apiUrl = 'http://localhost:8082/api/v1/bank/loans/detalles';
 
   constructor(private http: HttpClient) {}
 
@@ -15,19 +15,19 @@ export class LoanDetailsService {
     return this.http.get<LoanDetailsInterface[]>(this.apiUrl);
   } 
 
-  getLoanDetailsById(id: string): Observable<LoanDetailsInterface> {
-    return this.http.get<LoanDetailsInterface>(`${this.apiUrl}/${id}`);
+  getLoanDetailsById(uid: string): Observable<LoanDetailsInterface> {
+    return this.http.get<LoanDetailsInterface>(`${this.apiUrl}/${uid}`);
   }
 
   createLoanDetails(loandetails: LoanDetailsInterface): Observable<LoanDetailsInterface> {
     const payload = {
-      uidPrestamo: loandetails.uidPrestamo,
+      uidPrestamo: loandetails.uid_prestamo,
       uidCuenta: loandetails.uidCuenta,
       montoPrestamo: loandetails.montoPrestamo,
       tasaInt: loandetails.tasaInt,
       cuotas: loandetails.cuotas,
-      deudaCuota: loandetails.deudaCuota,
-      deudaTotal: loandetails.deudaTotal,
+      deudaCuota: loandetails.deuda_cuota,
+      deudaTotal: loandetails.deuda_total,
       fecha: loandetails.fecha ?? new Date()
     };
     return this.http.post<LoanDetailsInterface>(this.apiUrl, payload);

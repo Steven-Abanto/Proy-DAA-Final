@@ -11,7 +11,14 @@ export const LOANDETAILS_ROUTES: Routes = [
         path: 'list', 
         loadComponent: () => import('./components/loanDetails.component/loanDetails.component').then(m => m.LoanDetailsComponent),
         canActivate: [AuthGuard] 
+    },
+
+    {
+        path: ':uid',
+        loadComponent: () => import('./components/loanDetails.component/loanDetails.component').then(m => m.LoanDetailsComponent),
+        canActivate: [AuthGuard]
     }
+
 /*     {
         path: 'update/:uid',
         loadComponent: () => import('./components/loandetails.update.component/loandetails.update.component').then(m => m.LoanDetailsUpdateComponent),

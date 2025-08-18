@@ -1,10 +1,10 @@
 export interface LoanDetailsInterface {
-    uidPrestamo: string;
+    uid_prestamo: string;
     uidCuenta: string;
     montoPrestamo: number;
     tasaInt: number;
     cuotas: number;
-    deudaCuota: number;
-    deudaTotal: number;
+    deuda_cuota: number;
+    deuda_total: number;
     fecha: Date;
 }
